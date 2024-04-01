@@ -1,7 +1,12 @@
 print("########## 1.2.1 ##########")
+name = input("What is your name? ")
+print(name)
+print(name)
 
 print("########## 1.2.2 ##########")
-
+name = input("What is your name? ")
+print(name)
+print("!")
 print("########## 1.2.3 ##########")
 
 print("########## 1.2.4 ##########")
