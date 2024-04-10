@@ -1,0 +1,406 @@
+This material is adapted from the [University of Helsinki Python Programming MOOC](https://programming-24.mooc.fi/). The original material is licensed under the [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed) license. The original material has been modified from its original form.
+
+## Table Of Contents
+
+- [2.1 - More Conditionals](#21---more-conditionals), [Exercises](#21-exercises)
+- [2.2 - Compound Conditions](#22---compound-conditions), [Exercises](#22-exercises)
+
+## 2.1 - More Conditionals
+
+The `elif` and `else` statements can be added to the end of an `if` statement to implement functionality similar to that in AppInventor. For example, code from the previous section:
+
+```python
+number = int(input("Please type in a number"))
+if number > 0:
+    print("number is positive")
+if number < 0:
+    print("number is negative")
+if number == 0:
+    print("number is zero")
+```
+
+can be re-written:
+
+```python
+number = int(input("Please type in a number"))
+if number > 0:
+    print("number is positive")
+elif number < 0:
+    print("number is negative")
+else:
+    print("number is zero")
+```
+
+There is no limit to how many `elif` branches are included, and the `else` branch is optional. The `else` branch is executed if none of the `if` or `elif` branches are executed.
+
+## 2.1 Exercises
+
+These exercises are to be done in the [1MoreConditionalsAssignment.py](1MoreConditionalsAssignment.py) file
+
+1. The function `len` can be used to find out the length of a string. It returns the number of characters in a string.
+
+   Some examples of how this works:
+
+   ```python
+   word = "abcd"
+   print(len(word)) # prints 4
+
+   print(len("hi there")) # prints 8
+
+   word2 = "howdydoody"
+   length = len(word2)
+   print(length) # prints 10
+
+   empty_string = ""
+   length = len(empty_string)
+   print(length) # print 0
+   ```
+
+   Write code which asks the user for a word and then prints out the number of characters, if there was more than one typed in.
+
+   Examples of expected behaviour:
+
+   ```text
+   Please type in a word: hey
+   There are 3 letters in the word hey
+   Thank you!
+   ```
+
+   ```text
+   Please type in a word: banana
+   There are 6 letters in the word banana
+   Thank you!
+   ```
+
+   ```text
+   Sample output
+   Please type in a word: b
+   Thank you!
+   ```
+
+2. When programming in Python, often we need to change the data type of a value. For example, a floating point number can be converted into an integer with the function `int`:
+
+   ```python
+   temperature = float(input("Please type in a temperature: "))
+
+   print("The temperature is", temperature)
+
+   print("...and rounded down it is", int(temperature))
+   ```
+
+   Try running this code typing in 5.15, and then 8.99. Notice the function always rounds down, and not according to the rounding rules in math.
+
+   Write code which asks the user for a floating point number and then prints out the integer part and the decimal part separately. Use the Python `int` function.
+
+   You can assume the number given by the user is always greater than zero.
+
+   An example of expected behaviour:
+
+   ```text
+   Please type in a number: 1.34
+   Integer part: 1
+   Decimal part: 0.34
+   ```
+
+3. Write code which asks the user for their age. The program should then print out a message based on whether they may vote or not in elections (you must be 18 or older to do so).
+
+   Some examples of expected behaviour:
+
+   ```text
+   How old are you? 12
+   You may not vote.
+   ```
+
+   ```text
+   How old are you? 32
+   You may vote!
+   ```
+
+4. Write code which asks for two integer numbers. Then print out whichever is greater. If the numbers are equal, the program should print a different message.
+
+   Some examples of expected behaviour:
+
+   ```text
+   Please type in the first number: 5
+   Please type in another number: 3
+   The greater number was: 5
+   ```
+
+   ```text
+   Please type in the first number:: 5
+   Please type in another number: 8
+   The greater number was: 8
+   ```
+
+   ```text
+   Sample output
+   Please type in the first number: 5
+   Please type in another number: 5
+   The numbers are equal!
+   ```
+
+5. Write code which asks for the names and ages of two people. It should then print out the name of the elder.
+
+Some examples of expected behaviour:
+
+```text
+Person 1:
+Name: Alan
+Age: 26
+Person 2:
+Name: Ada
+Age: 27
+The elder is Ada
+```
+
+```text
+Person 1:
+Name: Bill
+Age: 1
+Person 2:
+Name: Jean
+Age: 1
+Bill and Jean are the same age
+```
+
+6. Python comparison operators can also be used on strings. String `a` is smaller than string `b` if it comes alphabetically before `b`. It's only reliable if the characters compared are of the same case, i.e. both UPPERCASE or both lowercase, and only the standard English alphabet of a to z, or
+
+Write code which asks the user for two words. Then print out whichever of the two comes alphabetically last.
+
+You can assume all words will be typed in lowercase entirely.
+
+Some examples of expected behaviour:
+
+```text
+Please type in the 1st word: car
+Please type in the 2nd word: scooter
+scooter comes alphabetically last.
+```
+
+```text
+Please type in the 1st word: zorro
+Please type in the 2nd word: batman
+zorro comes alphabetically last.
+```
+
+```text
+Please type in the 1st word: python
+Please type in the 2nd word: python
+You gave the same word twice.
+```
+
+## 2.2 - Compound Conditions
+
+You can combine conditions with the logical operators `and` and `or`. The operator `and` specifies that all the given conditions must be true at the same time. The operator `or` specifies that at least one of the given conditions must be true.
+
+For example, `number >= 5 and number <= 8` asserts that `number` must simultaneously be at least 5 and at most 8. That is, it must be between 5 and 8.
+
+```python
+number = int(input("Please type in a number: "))
+if number >= 5 and number <= 8:
+    print("The number is between 5 and 8")
+```
+
+The condition `number < 5 or number > 8` determines that number must be either less than 5 or greater than 8. That is, it must not be within the range of 5 to 8.
+
+```python
+number = int(input("Please type in a number: "))
+if number < 5 or number > 8:
+    print("The number is not within the range of 5 to 8")
+```
+
+The operator `not` can negate a condition. For example, another valid way to check if a number is not within the range of 5 to 8:
+
+```python
+number = int(input("Please type in a number: "))
+if not (number >= 5 and number <= 8):
+    print("The number is not within the range of 5 to 8")
+```
+
+Conditions can be chained and combined, for example:
+
+```python
+n1 = int(input("Number 1: "))
+n2 = int(input("Number 2: "))
+n3 = int(input("Number 3: "))
+n4 = int(input("Number 4: "))
+
+if n1 > n2 and n1 > n3 and n1 > n4:
+    greatest = n1
+elif n2 > n3 and n2 > n4:
+    greatest = n2
+elif n3 > n4:
+    greatest = n3
+else:
+    greatest = n4
+
+print(f" {greatest} is the greatest of the numbers.")
+```
+
+Conditional statements can also be nested within other conditional statements. For example, the following program checks whether a number is above zero, and then whether it is odd or even:
+
+```python
+number = int(input("Please type in a number: "))
+
+if number > 0:
+    if number % 2 == 0:
+        print("The number is even")
+    else:
+        print("The number is odd")
+else:
+    print("The number is negative or zero")
+```
+
+Some examples of how this program behaves:
+
+```text
+Please type in a number: 3
+The number is odd
+```
+
+```text
+Please type in a number: 18
+The number is even
+```
+
+```text
+Please type in a number: -4
+The number is negative or zero
+```
+
+## 2.2 Exercises
+
+These exercises are to be done in the [2CompoundConditionsAssignment.py](2CompoundConditionsAssignment.py) file
+
+1. Write code which asks for the user's age. If the age is not plausible (under 5, or something that can't be an actual human age), the program should print out a comment.
+
+   See examples:
+
+   ```text
+   What is your age? 13
+   Ok, you're 13 years old
+   ```
+
+   ```text
+   What is your age? 2
+   I suspect you can't write quite yet...
+   ```
+
+   ```text
+   What is your age? -4
+   That must be a mistake
+   ```
+
+2. Write code which asks for the user's name. If the name is "Huey", "Dewey" or "Louie", the program should recognise the user as one of Donald Duck's nephews.
+
+   In a similar fashion, if the name is "Morty" or "Ferdie", the program should recognise the user as one of Mickey Mouse's nephews.
+
+   For example:
+
+   ```text
+   Please type in your name: Morty
+   I think you might be one of Mickey Mouse's nephews.
+   ```
+
+   ```text
+   Please type in your name: Huey
+   I think you might be one of Donald Duck's nephews.
+   ```
+
+   ```text
+   Please type in your name: Ken
+   You're not a nephew of any character I know of.
+   ```
+
+3. The following table gives the grade boundaries for a class:
+
+   | percent | grade       |
+   | ------- | ----------- |
+   | < 0     | impossible! |
+   | 0-59    | F           |
+   | 60-69   | D           |
+   | 70-79   | C           |
+   | 80-89   | B           |
+   | 90-100  | A           |
+   | > 100   | impossible! |
+
+   Write code which asks for the user's score and then prints out the grade. For example
+
+   ```text
+   Type in percent: 77
+   Grade: C
+   ```
+
+   ```text
+   Type in percent: 99
+   Grade: A
+   ```
+
+   ```text
+   Type in percent: 101
+   Grade: impossible!
+   ```
+
+4. Ask the user for an integer number. If the number is divisible by three, the program should print out "Fizz". If the number is divisible by five, the program should print out "Buzz". If the number is divisible by both three and five, the program should print out "FizzBuzz".
+
+   Some examples of expected behaviour:
+
+   ```text
+   Number: 9
+   Fizz
+   ```
+
+   ```text
+   Number: 7
+   ```
+
+   ```text
+   Number: 20
+   Buzz
+   ```
+
+   ```text
+   Number: 45
+   FizzBuzz
+   ```
+
+5. Generally, any year that is divisible by four is a leap year. However, if the year is additionally divisible by 100 it is not a leap year. Unless it is also divisible by 400, then it is a leap year.
+
+   Ask the user for a year, and then print out whether that year is a leap year or not.
+
+   Some examples:
+
+   ```text
+   Please type in a year: 2011
+   That year is not a leap year.
+   ```
+
+   ```text
+   Please type in a year: 2020
+   That year is a leap year.
+   ```
+
+   ```text
+   Please type in a year: 1800
+   That year is not a leap year.
+   ```
+
+6. Ask the user for three letters. Then print out whichever of the three letters would be in the middle if the letters were in alphabetical order.
+
+   You may assume the letters will be either all uppercase, or all lowercase.
+
+   Some examples of expected behaviour:
+
+   ```text
+   1st letter: x
+   2nd letter: c
+   3rd letter: p
+   The letter in the middle is p
+   ```
+
+   ```text
+   1st letter: C
+   2nd letter: B
+   3rd letter: A
+   The letter in the middle is B
+   ```
