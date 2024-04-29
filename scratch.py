@@ -1,17 +1,20 @@
-age = int(input("Please enter your age"))
+import random
 
+print("before loop")
+num = random.randint(1, 2)
+counter = 10
+while True:
+    counter = counter - 1
+    print("inside loop")
+    if counter == 3:
+        break
 
-if age == 18:
-    print("Happy first voting day")
-elif age >= 18:
-    print("You can vote")
-else:
-    print("You're too young to vote")
+print("after loop")
 
+if num == 1:
+    print("num = 1")
 
-# if age >= 18:
-#     print("You can vote")
-# elif age == 18:
-#     print("Happy first voting day")
-# else:
-#     print("You're too young to vote")
+if num == 2:
+    print("num = 2")
+
+print("num is", num)
