@@ -3,6 +3,9 @@ This material is adapted from the [University of Helsinki Python Programming MOO
 ## Table Of Contents
 
 - [4.1 - Printing Functions](#41---printing-functions), [Exercises](#41-exercises)
+- [4.2 - Returning Functions](#42---returning-functions), [Exercises](#42-exercises)
+- [4.3 - Lists Intro](#43---lists-intro), [Exercises](#43-exercises)
+- [4.4 - `for` loops](#44---for-loops), [Exercises](#44-exercises)
 
 ## 4.1 - Printing Functions
 
@@ -213,3 +216,477 @@ Complete these exercises in the [1PrintingFunctionsAssignment.py](1PrintingFunct
    ```
 
    NB: to the left of the spruce there should be exactly the right amount of whitespace. The left edge of the tree should be touching the left edge of the text area in the terminal.
+
+## 4.2 - Returning Functions
+
+So far all our functions have printed something. However, sometimes we want to store the result of a function to use later. To do this, we need to use the `return` statement within a function. This statement causes the function to stop running, and makes available (to the code that called the function) the return value.
+
+```python
+def print_sum(a, b):
+   print("The sum of", a, "and", b, "is", a + b)
+
+def return_sum(a, b):
+   return a + b
+
+total = print_sum(3, 7)
+print("The value returned was:", total)
+
+total = return_sum(3, 7)
+print("The value returned was:", total)
+```
+
+Here's a useful comparison function:
+
+```python
+def smallest(a, b):
+   if a < b:
+      return a
+   return b
+```
+
+## 4.2 Exercises
+
+Complete these exercises in the [2ReturningFunctionsAssignment.py](2ReturningFunctionsAssignment.py) file.
+
+1. Write a function named `greatest_number`, which takes three arguments. The function returns the greatest of the three.
+
+   An example of how the function is used:
+
+   ```python
+   print(greatest_number(3, 4, 1)) # 4
+   print(greatest_number(99, -4, 7)) # 99
+   print(greatest_number(0, 0, 0)) # 0
+   ```
+
+2. Write a function named `same_chars`, which takes one string and two integers as arguments. The integers refer to indexes within the string. The function should return `True` if the two characters at the indexes specified are the same. Otherwise, and especially if either of the indexes falls outside the scope of the string, the function returns `False`.
+
+   For example:
+
+   ```python
+   # same characters m and m
+   print(same_chars("programmer", 6, 7)) # True
+
+   # different characters p and r
+   print(same_chars("programmer", 0, 4)) # False
+
+   # the second index is not within the string
+   print(same_chars("programmer", 0, 12)) # False
+   ```
+
+3. Write three functions: `first_word`, `second_word` and `last_word`. Each function takes a string argument.
+
+   As their names imply, the functions return either the first, the second or the last word in the sentence they receive as their string argument.
+
+   In each case you may assume the argument string contains at least two separate words, and all words are separated by exactly one space character. There will be no spaces in the beginning or at the end of the argument strings.
+
+   For example:
+
+   ```python
+   sentence = "it was a dark and stormy python"
+
+   print(first_word(sentence)) # it
+   print(second_word(sentence)) # was
+   print(last_word(sentence)) # python
+   ```
+
+## 4.3 - Lists Intro
+
+### Creating lists
+
+Lists can be created like this:
+
+```python
+empty_list = []
+number_list = [7, 2, 2, 5, 2]
+```
+
+### Accessing list elements
+
+Elements of a list can be accessed just like string elements are accessed:
+
+```python
+print(number_list[0])
+print(number_list[1])
+print(number_list[3])
+
+print("The sum of the first two items:", number_list[0] + number_list[1])
+```
+
+Just like with strings, the length of a list can be found with the `len` function:
+
+```python
+print(len(number_list))
+```
+
+Just like with strings, we can check for the presence of an item with the `in` operator:
+
+```python
+my_list = [1, 3, 4]
+
+if 1 in my_list:
+    print("The list contains item 1")
+
+if 2 in my_list:
+    print("The list contains item 2")
+```
+
+### Changing list elements
+
+Unlike with strings, you can change the individual elements of a list:
+
+```python
+print("before:", number_list)
+number_list[0] = 99
+print("after:", number_list)
+```
+
+### Adding elements to a list
+
+The `append` method adds items to the end of a list. It works like this:
+
+```python
+numbers = []
+numbers.append(5)
+numbers.append(10)
+numbers.append(3)
+print(numbers)
+```
+
+If you want to specify a location in the list where an item should be added, you can use the `insert` method. The method adds an item at the specified index. All the items already in the list with an index equal to or higher than the specified index are moved one index further, "to the right":
+
+```python
+numbers = [1, 2, 3, 4, 5, 6]
+numbers.insert(0, 10)
+print(numbers)
+numbers.insert(2, 20)
+print(numbers)
+```
+
+### Removing elements from a list
+
+There are two different approaches to removing an item from a list:
+
+- If the index of the item is known, you can use the method `pop`
+- If the contents of the item are known, you can use the method `remove`
+
+The method `pop` takes the index of the item you want to remove as its argument. The following code removes items at indexes 2 and 3 from the list. Notice how the indexes of the remaining items change when one is removed.
+
+```python
+my_list = [1, 2, 3, 4, 5, 6]
+
+my_list.pop(2)
+print(my_list) # [1, 2, 4, 5, 6]
+my_list.pop(3)
+print(my_list) # [1, 2, 4, 6]
+```
+
+Method `pop` also returns the removed item:
+
+```python
+my_list = [4, 2, 7, 2, 5]
+
+number = my_list.pop(2)
+print(number) # 7
+print(my_list) # [4, 2, 2, 5]
+```
+
+`remove`, on the other hand, takes the value of the item to be removed as its argument. For example:
+
+```python
+my_list = [1, 2, 3, 4, 5, 6]
+
+my_list.remove(2)
+print(my_list) # [1, 3, 4, 5, 6]
+my_list.remove(5)
+print(my_list) # [1, 3, 4, 6]
+```
+
+The method removes the first occurrence of the value in the list, much like the string function `find` returns the first occurrence of a substring.
+
+```python
+my_list = [1, 2, 1, 2]
+
+my_list.remove(1)
+print(my_list) # [2, 1, 2]
+my_list.remove(1)
+print(my_list) # [2, 2]
+```
+
+## 4.3 Exercises
+
+These exercises are completed in the [3ListsIntroAssignment.py](3ListsIntroAssignment.py) file.
+
+1. Write code which initialises a list with the values [1, 2, 3, 4, 5]. Then ask the user for an index and a new value, replace the value at the given index, and print the list again. This should be looped over until the user gives -1 for the index. You can assume all given index values will fall within your list.
+
+   An example execution of the code:
+
+   ```plaintext
+   Index: 0
+   New value: 10
+   [10, 2, 3, 4, 5]
+   Index: 2
+   New value: 250
+   [10, 2, 250, 4, 5]
+   Index: 4
+   New value: -45
+   [10, 2, 250, 4, -45]
+   Index: -1
+   ```
+
+2. Write code which first asks the user for the number of items to be added. Then the code should ask for the values, one by one, and add them to a list in the order they were typed in. Finally, the list is printed out.
+
+   An example of expected behavior:
+
+   ```plaintext
+   How many items: 3
+   Item 1: 10
+   Item 2: 250
+   Item 3: 34
+   [10, 250, 34]
+   ```
+
+3. Write code which asks the user to choose between addition and removal. Depending on the choice, the program adds an item to or removes an item from the end of a list. The item that is added must always be one greater than the last item in the list. The first item to be added must be 1.
+
+   The list is printed out in the beginning and after each operation. Have a look at the example execution:
+
+   ```plaintext
+   The list is now []
+   a(d)d, (r)emove or e(x)it: d
+   The list is now [1]
+   a(d)d, (r)emove or e(x)it: d
+   The list is now [1, 2]
+   a(d)d, (r)emove or e(x)it: d
+   The list is now [1, 2, 3]
+   a(d)d, (r)emove or e(x)it: r
+   The list is now [1, 2]
+   a(d)d, (r)emove or e(x)it: d
+   The list is now [1, 2, 3]
+   a(d)d, (r)emove or e(x)it: x
+   Bye!
+   ```
+
+   You may assume that, if the list is empty, there will not be an attempt to remove items.
+
+4. Write code which asks the user for words. If the user types in a word for the second time, the program should print out the number of different words typed in, and exit. For example:
+
+   ```plaintext
+   Word: once
+   Word: upon
+   Word: a
+   Word: time
+   Word: upon
+   You typed in 4 different words
+   ```
+
+## 4.4 - `for` loops
+
+### looping through lists
+
+Doing something for every item in a list (for example, printing it), is a very common task, but requires quite a lot of code to do using a `while` loop:
+
+```python
+items = [3, 2, 4, 5, 2]
+index = 0
+while index < len(items):
+   print(items[index])
+   index += 1
+```
+
+Python has a special type of loop for this:
+
+```python
+items = [3, 2, 4, 5, 2]
+for item in items:
+   print(item)
+```
+
+This works for strings too:
+
+```python
+word = "example"
+for letter in word:
+   print(letter)
+```
+
+### looping through a range
+
+There's a function called `range` which can generate numbers to loop through. It has 3 different versions taking different numbers of arguments.
+
+Providing `range` with one numeric argument generates numbers from zero up to (but not including) that number:
+
+```python
+for i in range(5):
+   print(i)
+```
+
+Providing two arguments generates numbers from (and including) the first number up to (not including) the second:
+
+```python
+for i in range(3, 7):
+   print(i)
+```
+
+The third argument allows you to specify the step size:
+
+```python
+for i in range(1, 9, 2):
+   print(i)
+```
+
+It can be negative, to count down (but you also need to reverse the from and to numbers):
+
+```python
+for i in range(6, 2, -1):
+   print(i)
+```
+
+## 4.4 Exercises
+
+These exercises are completed in the [4ForLoopsAssignment.py](4ForLoopsAssignment.py) file.
+
+1. write code which asks the user to type in a string. Prints each input character on a separate line. After each character there should be a star ("\*") printed on its own line.
+
+   This is how it should work:
+
+   ```plaintext
+   Please type in a string: Python
+   P
+   *
+   y
+   *
+   t
+   *
+   h
+   *
+   o
+   *
+   n
+   *
+   ```
+
+2. Write code which asks the user for a positive integer N. Print all numbers between -N and N inclusive, but leave out the number 0. Each number should be printed on a separate line.
+
+   An example of expected behaviour:
+
+   ```plaintext
+   Please type in a positive integer: 4
+   -4
+   -3
+   -2
+   -1
+   1
+   2
+   3
+   4
+   ```
+
+3. Write a function named `list_of_stars`, which takes a list of integers as its argument. The function should print out lines of star characters. The numbers in the list specify how many stars each line should contain.
+
+   For example, with the function call `list_of_stars([3, 7, 1, 1, 2])` the following should be printed out:
+
+   ```plaintext
+   ***
+   *******
+   *
+   *
+   **
+   ```
+
+4. Write a function named `palindromes`, which takes a string argument and returns `True` if the string is a palindrome, and `False` otherwise. Palindromes are words which are spelled exactly the same backwards and forwards.
+
+   Examples of use:
+
+   ```python
+   print(palindromes("python")) # False
+   print(palindromes("java")) # False
+   print(palindromes("neveroddoreven")) # True
+   print(palindromes("racecar")) # True
+   ```
+
+5. Write a function named `sum_of_positives`, which takes a list of integers as its argument. The function returns the sum of the positive values in the list.
+
+   This code:
+
+   ```python
+   my_list = [1, -2, 3, -4, 5]
+   result = sum_of_positives(my_list)
+   print("The result is", result)
+   ```
+
+   should print
+
+   ```plaintext
+   The result is 9
+   ```
+
+6. Write a function named `even_numbers`, which takes a list of integers as an argument. The function returns a new list containing the even numbers from the original list.
+
+   This code:
+
+   ```python
+   my_list = [1, 2, 3, 4, 5]
+   new_list = even_numbers(my_list)
+   print("original", my_list)
+   print("new", new_list)
+   ```
+
+   should print
+
+   ```plaintext
+   original [1, 2, 3, 4, 5]
+   new [2, 4]
+   ```
+
+7. Write a function named `list_sum` which takes two lists of integers as arguments. The function returns a new list which contains the sums of the items at each index in the two original lists. You may assume both lists have the same number of items.
+
+   An example of the function at work:
+
+   ```python
+   a = [1, 2, 3]
+   b = [7, 8, 9]
+   print(list_sum(a, b)) # [8, 10, 12]
+   ```
+
+8. Write a function named `length_of_longest`, which takes a list of strings as its argument. The function returns the length of the longest string.
+
+   This code:
+
+   ```python
+   my_list = ["first", "second", "fourth", "eleventh"]
+
+   result = length_of_longest(my_list)
+   print(result)
+   my_list = ["adele", "mark", "dorothy", "tim", "hedy", "richard"]
+
+   result = length_of_longest(my_list)
+   print(result)
+   ```
+
+   should print
+
+   ```plaintext
+   8
+   7
+   ```
+
+9. Write a function named `shortest`, which takes a list of strings as its argument. The function returns whichever of the strings is the shortest.
+
+   This code:
+
+   ```python
+   my_list = ["first", "second", "fourth", "eleventh"]
+
+   result = shortest(my_list)
+   print(result)
+   my_list = ["adele", "mark", "dorothy", "tim", "hedy", "richard"]
+
+   result = shortest(my_list)
+   print(result)
+   ```
+
+   Should print
+
+   ```plaintext
+   first
+   tim
+   ```
