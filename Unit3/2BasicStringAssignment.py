@@ -63,19 +63,19 @@
 
 
 # ========== 3.2.9 ==========
-word = input("Word:")
+# word = input("Word:")
 
-stars = "*" * 30
-print(stars)
+# stars = "*" * 30
+# print(stars)
 
-### this!
-number_of_spaces = 30 -2 - len(word)
-numberofleftspaces = number_of_spaces // 2
-leftspaces = " " * numberofleftspaces
-numberofrightspaces = number_of_spaces // 2
+# ### this!
+# number_of_spaces = 30 -2 - len(word)
+# numberofleftspaces = number_of_spaces // 2
+# leftspaces = " " * numberofleftspaces
+# numberofrightspaces = number_of_spaces // 2
 
-print("*" + leftspaces + word + leftspaces +"*")
-###
+# print("*" + leftspaces + word + leftspaces +"*")
+# ###
 
-print(stars)
+# print(stars)
 
