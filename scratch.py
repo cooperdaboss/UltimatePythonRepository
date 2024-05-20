@@ -1,20 +1,10 @@
-import random
+def print_sum(a, b):
+   print("The sum of", a, "and", b, "is", a + b)
 
-print("before loop")
-num = random.randint(1, 2)
-counter = 10
-while True:
-    counter = counter - 1
-    print("inside loop")
-    if counter == 3:
-        break
+def return_sum(a, b):
+   return a + b
 
-print("after loop")
 
-if num == 1:
-    print("num = 1")
-
-if num == 2:
-    print("num = 2")
-
-print("num is", num)
+n1 =  print_sum(3, 7)
+n1 =  return_sum(3, 7)
+print("The value of n1 is", n1)
